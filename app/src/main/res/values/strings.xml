@@ -2,5 +2,6 @@
     <string name="app_name">Modulair Client</string>
 
     <string name="hello_world">Hello modulair-client!</string>
+    <string name="get_users">GET All Users!</string>
     <string name="action_settings">Settings</string>
 </resources>

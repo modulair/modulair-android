@@ -1,9 +1,17 @@
 package com.muhammadmustadi.android.modulairclient;
 
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,8 +20,32 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
+        final Button btnGet = (Button) findViewById(R.id.btnGet);
+        final TextView textRes = (TextView) findViewById(R.id.textRes);
+        btnGet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textRes.setText("fetching..");
+                String url = "http://date.jsontest.com";
+                String url2 = "http://modulair.muhammadmustadi.com:80/v1/users/id/551119e9a56115b25c5c8aa8";
+                new MyAsyncTask().execute(url2);
+            }
+        });
+    }
+    class MyAsyncTask extends AsyncTask<String,Void,JSONObject> {
+
+        @Override
+        protected JSONObject doInBackground(String... urls) {
+            return RestService.doGet(urls[0]);
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject jsonObject) {
+            TextView tv = (TextView) findViewById(R.id.textRes);
+            tv.setText(jsonObject.toString());
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -35,5 +67,9 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private class LongRunningGetIO {
+
     }
 }
