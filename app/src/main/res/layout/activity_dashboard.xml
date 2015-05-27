@@ -11,91 +11,10 @@
 
     <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textViewID" />
-
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lamp 1"
-        android:id="@+id/switch1"
-        android:layout_marginTop="46dp"
-        android:layout_below="@+id/textViewID"
-        android:layout_alignRight="@+id/textViewID"
-        android:layout_alignEnd="@+id/textViewID"
-        android:checked="false" />
-
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lamp 2"
-        android:id="@+id/switch2"
-        android:layout_below="@+id/switch1"
-        android:layout_alignRight="@+id/textViewID"
-        android:layout_alignEnd="@+id/textViewID"
-        android:layout_marginTop="41dp"
-        android:checked="false" />
-
-    <ProgressBar
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
-        android:layout_alignParentBottom="true"
+        android:id="@+id/textViewID"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lamp 3"
-        android:id="@+id/switch3"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/switch2"
-        android:layout_alignStart="@+id/switch2"
-        android:checked="false" />
-
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lamp 4"
-        android:id="@+id/switch4"
-        android:layout_below="@+id/switch3"
-        android:layout_alignLeft="@+id/switch3"
-        android:layout_alignStart="@+id/switch3"
-        android:layout_marginTop="34dp"
-        android:checked="false" />
-
-    <SeekBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/seekBar"
-        android:layout_alignTop="@+id/switch1"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/progressBar"
-        android:layout_toEndOf="@+id/progressBar" />
-
-    <SeekBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/seekBar2"
-        android:layout_alignTop="@+id/switch2"
-        android:layout_alignRight="@+id/seekBar"
-        android:layout_alignEnd="@+id/seekBar"
-        android:indeterminate="false"
-        android:layout_toRightOf="@+id/progressBar"
-        android:layout_toEndOf="@+id/progressBar" />
-    <com.cengalabs.flatui.views.FlatToggleButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        flatui:fl_space="5dip"
-        flatui:fl_theme="@array/deep"
-        flatui:fl_cornerRadius="20dp"
-        android:layout_above="@+id/switch4"
-        android:layout_alignLeft="@+id/seekBar2"
-        android:layout_alignStart="@+id/seekBar2"
-        android:checked="true"
-        android:id="@+id/toggle"
-        android:text="Lamp 1" />
     <com.cengalabs.flatui.views.FlatButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -104,9 +23,120 @@
         android:checked="false"
         android:id="@+id/btnLogout"
         android:text="Logout"
-        android:layout_above="@+id/progressBar"
-        android:layout_toRightOf="@+id/progressBar"
-        android:layout_toEndOf="@+id/progressBar"
-        android:layout_marginBottom="38dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewID"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <com.cengalabs.flatui.views.FlatToggleButton
+                flatui:fl_space="20dip"
+                flatui:fl_theme="@array/deep"
+                flatui:fl_cornerRadius="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lamp 1"
+                android:id="@+id/switch1"
+                android:checked="false" />
+
+            <com.cengalabs.flatui.views.FlatToggleButton
+                flatui:fl_space="20dip"
+                flatui:fl_theme="@array/deep"
+                flatui:fl_cornerRadius="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lamp 2"
+                android:id="@+id/switch2"
+                android:checked="false" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <com.cengalabs.flatui.views.FlatToggleButton
+                flatui:fl_space="20dip"
+                flatui:fl_theme="@array/deep"
+                flatui:fl_cornerRadius="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lamp 3"
+                android:id="@+id/switch3"
+                android:checked="false" />
+
+            <com.cengalabs.flatui.views.FlatToggleButton
+                flatui:fl_space="20dip"
+                flatui:fl_theme="@array/deep"
+                flatui:fl_cornerRadius="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lamp 4"
+                android:id="@+id/switch4"
+                android:checked="false" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.cengalabs.flatui.views.FlatToggleButton
+                flatui:fl_space="20dip"
+                flatui:fl_theme="@array/deep"
+                flatui:fl_cornerRadius="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:id="@+id/toggle"
+                android:text="Lamp 1" />
+            <com.cengalabs.flatui.views.FlatButton
+                flatui:fl_touchEffect="fl_ripple"
+                flatui:fl_theme="@array/deep"
+                flatui:fl_blockButtonEffectHeight="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mode"
+                android:id="@+id/btnMode1" />
+            <com.cengalabs.flatui.views.FlatButton
+                flatui:fl_touchEffect="fl_ripple"
+                flatui:fl_theme="@array/deep"
+                flatui:fl_blockButtonEffectHeight="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mode"
+                android:id="@+id/btnMode2" />
+            <com.cengalabs.flatui.views.FlatButton
+                flatui:fl_touchEffect="fl_ripple"
+                flatui:fl_theme="@array/deep"
+                flatui:fl_blockButtonEffectHeight="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mode"
+                android:id="@+id/btnMode3" />
+            <com.cengalabs.flatui.views.FlatButton
+                flatui:fl_touchEffect="fl_ripple"
+                flatui:fl_theme="@array/deep"
+                flatui:fl_blockButtonEffectHeight="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mode"
+                android:id="@+id/btnMode4" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

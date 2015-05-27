@@ -15,6 +15,7 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.cengalabs.flatui.views.FlatToggleButton;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
 
@@ -48,10 +49,10 @@ public class DashboardActivity extends ActionBarActivity {
             // name
             message = user.get(SessionManager.KEY_SESSION);
         }
-        Switch sw1 = (Switch) findViewById(R.id.switch1);
-        Switch sw2 = (Switch) findViewById(R.id.switch2);
-        Switch sw3 = (Switch) findViewById(R.id.switch3);
-        Switch sw4 = (Switch) findViewById(R.id.switch4);
+        FlatToggleButton sw1 = (FlatToggleButton) findViewById(R.id.switch1);
+        FlatToggleButton sw2 = (FlatToggleButton) findViewById(R.id.switch2);
+        FlatToggleButton sw3 = (FlatToggleButton) findViewById(R.id.switch3);
+        FlatToggleButton sw4 = (FlatToggleButton) findViewById(R.id.switch4);
         Button btnLogout = (Button) findViewById(R.id.btnLogout);
         TextView tvDash = (TextView) findViewById(R.id.textViewID);
         tvDash.setText("hello " + message);
