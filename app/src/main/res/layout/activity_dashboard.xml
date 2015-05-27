@@ -1,0 +1,112 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:flatui="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.muhammadmustadi.android.modulairclient.DashboardActivity">
+
+    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewID" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lamp 1"
+        android:id="@+id/switch1"
+        android:layout_marginTop="46dp"
+        android:layout_below="@+id/textViewID"
+        android:layout_alignRight="@+id/textViewID"
+        android:layout_alignEnd="@+id/textViewID"
+        android:checked="false" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lamp 2"
+        android:id="@+id/switch2"
+        android:layout_below="@+id/switch1"
+        android:layout_alignRight="@+id/textViewID"
+        android:layout_alignEnd="@+id/textViewID"
+        android:layout_marginTop="41dp"
+        android:checked="false" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lamp 3"
+        android:id="@+id/switch3"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/switch2"
+        android:layout_alignStart="@+id/switch2"
+        android:checked="false" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lamp 4"
+        android:id="@+id/switch4"
+        android:layout_below="@+id/switch3"
+        android:layout_alignLeft="@+id/switch3"
+        android:layout_alignStart="@+id/switch3"
+        android:layout_marginTop="34dp"
+        android:checked="false" />
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBar"
+        android:layout_alignTop="@+id/switch1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/progressBar"
+        android:layout_toEndOf="@+id/progressBar" />
+
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekBar2"
+        android:layout_alignTop="@+id/switch2"
+        android:layout_alignRight="@+id/seekBar"
+        android:layout_alignEnd="@+id/seekBar"
+        android:indeterminate="false"
+        android:layout_toRightOf="@+id/progressBar"
+        android:layout_toEndOf="@+id/progressBar" />
+    <com.cengalabs.flatui.views.FlatToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        flatui:fl_space="5dip"
+        flatui:fl_theme="@array/deep"
+        flatui:fl_cornerRadius="20dp"
+        android:layout_above="@+id/switch4"
+        android:layout_alignLeft="@+id/seekBar2"
+        android:layout_alignStart="@+id/seekBar2"
+        android:checked="true"
+        android:id="@+id/toggle"
+        android:text="Lamp 1" />
+    <com.cengalabs.flatui.views.FlatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        flatui:fl_space="5dip"
+        flatui:fl_theme="@array/deep"
+        android:checked="false"
+        android:id="@+id/btnLogout"
+        android:text="Logout"
+        android:layout_above="@+id/progressBar"
+        android:layout_toRightOf="@+id/progressBar"
+        android:layout_toEndOf="@+id/progressBar"
+        android:layout_marginBottom="38dp" />
+
+</RelativeLayout>

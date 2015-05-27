@@ -5,6 +5,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,9 +39,48 @@ public class RestService {
             if (entity != null) {
                 // get entity contents and convert it to string
                 InputStream instream = entity.getContent();
-                String result= convertStreamToString(instream);
+                String result = convertStreamToString(instream);
                 // construct a JSON object with result
-                json=new JSONObject(result);
+                json = new JSONObject(result);
+                // Closing the input stream will trigger connection release
+                instream.close();
+            }
+        } catch (ClientProtocolException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        // Return the json
+        return json;
+    }
+    public static JSONObject doPost(String url) {
+        JSONObject json = null;
+
+        HttpClient httpclient = new DefaultHttpClient();
+        // Prepare a request object
+        HttpPost httpget = new HttpPost(url);
+        // Accept JSON
+        httpget.addHeader("accept", "application/json");
+        // Execute the request
+        HttpResponse response;
+
+        try {
+            response = httpclient.execute(httpget);
+            // Get the response entity
+            // Log.e("myApp", "Issue is here...!");
+            HttpEntity entity = response.getEntity();
+            // If response entity is not null
+            if (entity != null) {
+                // get entity contents and convert it to string
+                InputStream instream = entity.getContent();
+                String result = convertStreamToString(instream);
+                // construct a JSON object with result
+                json = new JSONObject(result);
                 // Closing the input stream will trigger connection release
                 instream.close();
             }

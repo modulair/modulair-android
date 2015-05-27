@@ -14,10 +14,10 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/relativeLayout">
+        android:id="@+id/relativeLayout"
+        >
 
         <com.cengalabs.flatui.views.FlatEditText
-            flatui:fl_fieldStyle="fl_box"
             android:id="@+id/textLogin"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
@@ -25,9 +25,11 @@
             android:ems="10"
             android:hint="Email Address"
             android:textColor="#000"
-            android:inputType="textEmailAddress" />
-        <com.cengalabs.flatui.views.FlatEditText
+            android:inputType="textEmailAddress"
             flatui:fl_fieldStyle="fl_box"
+            flatui:fl_theme="@array/deep"/>
+
+        <com.cengalabs.flatui.views.FlatEditText
             android:id="@+id/textPass"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
@@ -37,16 +39,19 @@
             android:ems="10"
             android:hint="Password"
             android:textColor="#000"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            flatui:fl_fieldStyle="fl_box"
+            flatui:fl_theme="@array/deep"/>
 
         </RelativeLayout>
 
     <com.cengalabs.flatui.views.FlatButton
         flatui:fl_touchEffect="fl_ripple"
+        flatui:fl_theme="@array/deep"
         flatui:fl_blockButtonEffectHeight="3dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/get_users"
+        android:text="@string/login"
         android:id="@+id/btnGet"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/relativeLayout"
@@ -56,9 +61,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
         android:id="@+id/textRes"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="M O D U L A I R"
+        android:id="@+id/textView"
+        android:layout_above="@+id/relativeLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="71dp" />
 
 </RelativeLayout>
