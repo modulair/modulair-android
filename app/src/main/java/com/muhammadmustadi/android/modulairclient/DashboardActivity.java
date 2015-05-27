@@ -1,9 +1,15 @@
 package com.muhammadmustadi.android.modulairclient;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,9 +24,11 @@ import org.json.JSONObject;
 import com.cengalabs.flatui.views.FlatToggleButton;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
+import com.github.nkzawa.emitter.Emitter;
 
 import java.net.URISyntaxException;
 import java.util.HashMap;
+
 
 
 public class DashboardActivity extends ActionBarActivity {
@@ -33,10 +41,82 @@ public class DashboardActivity extends ActionBarActivity {
     }
     SessionManager session;
 
+//    private Emitter.Listener androidCamNotifier = new Emitter.Listener() {
+//        @Override
+//        public void call(final Object.. args) {
+//            getActivity().runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    JSONObject data = (JSONObject) args[0];
+//                    String username;
+//                    String message;
+//                    try{
+//                        username = data.getString("username");
+//                        message = data.getString("message");
+//                    } catch (JSONException e) {
+//                        return;
+//                    }
+//
+//                    // add the message to view
+//                    //addMessage(username, message);
+//                }
+//            });
+//        }
+//    };
+    private void createNotification(String message) {
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle("Modulair notification")
+                        .setContentText(message);
+// Creates an explicit intent for an Activity in your app
+        Intent resultIntent = new Intent(this, DashboardActivity.class);
+        // The stack builder object will contain an artificial back stack for the
+// started Activity.
+// This ensures that navigating backward from the Activity leads out of
+// your application to the Home screen.
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+// Adds the back stack for the Intent (but not the Intent itself)
+        stackBuilder.addParentStack(DashboardActivity.class);
+// Adds the Intent that starts the Activity to the top of the stack
+        stackBuilder.addNextIntent(resultIntent);
+        PendingIntent resultPendingIntent =
+                stackBuilder.getPendingIntent(
+                        0,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+        mBuilder.setContentIntent(resultPendingIntent);
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+// mId allows you to update the notification later on.
+        mNotificationManager.notify(1, mBuilder.build());
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mSocket.on("androidcam", new Emitter.Listener() {
+            @Override
+            public void call(final Object... args) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        JSONObject data = (JSONObject) args[0];
+                        String messageCam;
+                        try {
+                            messageCam = data.getString("message");
+                        } catch (JSONException e) {
+                            return;
+                        }
+                        Log.v("camera", messageCam);
+                        createNotification(messageCam);
+                    }
+                });
+            }
+        });
+
         mSocket.connect();
+
         Intent intent = getIntent();
         String message = intent.getStringExtra("SESSIONID");
         setContentView(R.layout.activity_dashboard);
@@ -128,5 +208,13 @@ public class DashboardActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        mSocket.disconnect();
+        mSocket.off("androidcam");
+
     }
 }
