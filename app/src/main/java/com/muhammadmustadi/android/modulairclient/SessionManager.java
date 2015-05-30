@@ -70,7 +70,9 @@ public class SessionManager {
      * Else won't do anything
      * */
     public void checkLogin(){
+        //Log.v("islogin", pref.getString(IS_LOGIN, "default"));
         // Check login status
+        //Log.v(String(this.isLoggedIn()))
         if(!this.isLoggedIn()){
             // user is not logged in redirect him to Login Activity
             Intent i = new Intent(_context, MainActivity.class);

@@ -15,128 +15,248 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <com.cengalabs.flatui.views.FlatButton
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        flatui:fl_space="5dip"
-        flatui:fl_theme="@array/deep"
-        android:checked="false"
-        android:id="@+id/btnLogout"
-        android:text="Logout"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:id="@+id/scrollView" >
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewID"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/linearLayout">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
-
-            <com.cengalabs.flatui.views.FlatToggleButton
-                flatui:fl_space="20dip"
-                flatui:fl_theme="@array/deep"
-                flatui:fl_cornerRadius="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lamp 1"
-                android:id="@+id/switch1"
-                android:checked="false" />
-
-            <com.cengalabs.flatui.views.FlatToggleButton
-                flatui:fl_space="20dip"
-                flatui:fl_theme="@array/deep"
-                flatui:fl_cornerRadius="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lamp 2"
-                android:id="@+id/switch2"
-                android:checked="false" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
-
-            <com.cengalabs.flatui.views.FlatToggleButton
-                flatui:fl_space="20dip"
-                flatui:fl_theme="@array/deep"
-                flatui:fl_cornerRadius="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lamp 3"
-                android:id="@+id/switch3"
-                android:checked="false" />
-
-            <com.cengalabs.flatui.views.FlatToggleButton
-                flatui:fl_space="20dip"
-                flatui:fl_theme="@array/deep"
-                flatui:fl_cornerRadius="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lamp 4"
-                android:id="@+id/switch4"
-                android:checked="false" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
-            <com.cengalabs.flatui.views.FlatToggleButton
-                flatui:fl_space="20dip"
-                flatui:fl_theme="@array/deep"
-                flatui:fl_cornerRadius="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:id="@+id/toggle"
-                android:text="Lamp 1" />
-            <com.cengalabs.flatui.views.FlatButton
-                flatui:fl_touchEffect="fl_ripple"
-                flatui:fl_theme="@array/deep"
-                flatui:fl_blockButtonEffectHeight="3dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="mode"
-                android:id="@+id/btnMode1" />
-            <com.cengalabs.flatui.views.FlatButton
-                flatui:fl_touchEffect="fl_ripple"
-                flatui:fl_theme="@array/deep"
-                flatui:fl_blockButtonEffectHeight="3dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="mode"
-                android:id="@+id/btnMode2" />
-            <com.cengalabs.flatui.views.FlatButton
-                flatui:fl_touchEffect="fl_ripple"
-                flatui:fl_theme="@array/deep"
-                flatui:fl_blockButtonEffectHeight="3dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="mode"
-                android:id="@+id/btnMode3" />
-            <com.cengalabs.flatui.views.FlatButton
-                flatui:fl_touchEffect="fl_ripple"
-                flatui:fl_theme="@array/deep"
-                flatui:fl_blockButtonEffectHeight="3dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="mode"
-                android:id="@+id/btnMode4" />
-        </LinearLayout>
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                card_view:cardCornerRadius="4dp">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/linearLayout">
 
-    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <com.cengalabs.flatui.views.FlatToggleButton
+                            flatui:fl_space="20dp"
+                            flatui:fl_theme="@array/deep"
+                            flatui:fl_cornerRadius="40dp"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Lamp 1"
+                            android:id="@+id/switch1"
+                            android:checked="false" />
+
+                        <com.cengalabs.flatui.views.FlatToggleButton
+                            flatui:fl_space="20dp"
+                            flatui:fl_theme="@array/deep"
+                            flatui:fl_cornerRadius="40dp"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Lamp 2"
+                            android:id="@+id/switch2"
+                            android:checked="false" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center">
+
+                        <com.cengalabs.flatui.views.FlatToggleButton
+                            flatui:fl_space="20dp"
+                            flatui:fl_theme="@array/deep"
+                            flatui:fl_cornerRadius="40dp"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Lamp 3"
+                            android:id="@+id/switch3"
+                            android:checked="false" />
+
+                        <com.cengalabs.flatui.views.FlatToggleButton
+                            flatui:fl_space="20dp"
+                            flatui:fl_theme="@array/deep"
+                            flatui:fl_cornerRadius="40dp"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:text="Lamp 4"
+                            android:id="@+id/switch4"
+                            android:checked="false" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="0dp"
+                        android:layout_alignParentBottom="true">
+
+                        <com.cengalabs.flatui.views.FlatButton
+                            flatui:fl_touchEffect="fl_ripple"
+                            flatui:fl_theme="@array/deep"
+                            flatui:fl_blockButtonEffectHeight="3dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:id="@+id/btnMode0"
+                            android:text="Norm"
+                            android:layout_weight="1" />
+                        <com.cengalabs.flatui.views.FlatButton
+                            flatui:fl_touchEffect="fl_ripple"
+                            flatui:fl_theme="@array/deep"
+                            flatui:fl_blockButtonEffectHeight="3dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="home"
+                            android:id="@+id/btnMode1"
+                            android:layout_weight="1" />
+                        <com.cengalabs.flatui.views.FlatButton
+                            flatui:fl_touchEffect="fl_ripple"
+                            flatui:fl_theme="@array/deep"
+                            flatui:fl_blockButtonEffectHeight="3dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="auto"
+                            android:id="@+id/btnMode2"
+                            android:layout_weight="1" />
+                        <com.cengalabs.flatui.views.FlatButton
+                            flatui:fl_touchEffect="fl_ripple"
+                            flatui:fl_theme="@array/deep"
+                            flatui:fl_blockButtonEffectHeight="3dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="away"
+                            android:id="@+id/btnMode3"
+                            android:layout_weight="1" />
+                        <com.cengalabs.flatui.views.FlatButton
+                            flatui:fl_touchEffect="fl_ripple"
+                            flatui:fl_theme="@array/deep"
+                            flatui:fl_blockButtonEffectHeight="3dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="alert"
+                            android:id="@+id/btnMode4"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/card_view2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/card_view"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp"
+                card_view:cardCornerRadius="4dp">
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+                <info.hoang8f.android.segmented.SegmentedGroup
+                    xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/segmented2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal"
+                    segmentedgroup:border_width="2dp"
+                    segmentedgroup:corner_radius="10dp"
+                    android:layout_gravity="center">
+
+                    <RadioButton
+                        android:id="@+id/button21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Off"
+                        style="@style/RadioButton" />
+
+                    <RadioButton
+                        android:id="@+id/button22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50%"
+                        style="@style/RadioButton" />
+                    <RadioButton
+                        android:id="@+id/button23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="100%"
+                        style="@style/RadioButton" />
+                    <RadioButton
+                        android:id="@+id/button24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="auto"
+                        style="@style/RadioButton" />
+                </info.hoang8f.android.segmented.SegmentedGroup>
+                <info.hoang8f.android.segmented.SegmentedGroup
+                    xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/segmented3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal"
+                    segmentedgroup:border_width="2dp"
+                    segmentedgroup:corner_radius="10dp"
+                    android:layout_below="@+id/segmented2"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="24dp">
+
+                    <RadioButton
+                        android:id="@+id/button25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Off"
+                        style="@style/RadioButton" />
+
+                    <RadioButton
+                        android:id="@+id/button26"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50%"
+                        style="@style/RadioButton" />
+                    <RadioButton
+                        android:id="@+id/button27"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="100%"
+                        style="@style/RadioButton" />
+                    <RadioButton
+                        android:id="@+id/button28"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="auto"
+                        style="@style/RadioButton" />
+                </info.hoang8f.android.segmented.SegmentedGroup>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <com.cengalabs.flatui.views.FlatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                flatui:fl_space="5dip"
+                flatui:fl_theme="@array/deep"
+                android:checked="false"
+                android:id="@+id/btnLogout"
+                android:text="Logout"
+                android:layout_below="@+id/card_view2"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+
 
 </RelativeLayout>

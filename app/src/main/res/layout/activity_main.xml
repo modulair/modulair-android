@@ -17,19 +17,20 @@
         android:id="@+id/relativeLayout"
         >
 
-        <com.cengalabs.flatui.views.FlatEditText
-            android:id="@+id/textLogin"
+
+        <com.rengwuxian.materialedittext.MaterialAutoCompleteTextView android:id="@+id/textLogin"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:ems="10"
-            android:hint="Email Address"
+            android:hint="Username or Email Address"
             android:textColor="#000"
-            android:inputType="textEmailAddress"
-            flatui:fl_fieldStyle="fl_box"
-            flatui:fl_theme="@array/deep"/>
+            android:inputType="textEmailAddress" android:maxLines="1"
+            android:singleLine="true"/>
 
-        <com.cengalabs.flatui.views.FlatEditText
+
+
+        <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/textPass"
             android:layout_width="200dp"
             android:layout_height="wrap_content"

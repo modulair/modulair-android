@@ -1,10 +1,12 @@
 package com.muhammadmustadi.android.modulairclient;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
@@ -15,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -29,6 +32,7 @@ import com.github.nkzawa.emitter.Emitter;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 
+import info.hoang8f.android.segmented.SegmentedGroup;
 
 
 public class DashboardActivity extends ActionBarActivity {
@@ -41,28 +45,6 @@ public class DashboardActivity extends ActionBarActivity {
     }
     SessionManager session;
 
-//    private Emitter.Listener androidCamNotifier = new Emitter.Listener() {
-//        @Override
-//        public void call(final Object.. args) {
-//            getActivity().runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    JSONObject data = (JSONObject) args[0];
-//                    String username;
-//                    String message;
-//                    try{
-//                        username = data.getString("username");
-//                        message = data.getString("message");
-//                    } catch (JSONException e) {
-//                        return;
-//                    }
-//
-//                    // add the message to view
-//                    //addMessage(username, message);
-//                }
-//            });
-//        }
-//    };
     private void createNotification(String message) {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
@@ -86,14 +68,28 @@ public class DashboardActivity extends ActionBarActivity {
                         PendingIntent.FLAG_UPDATE_CURRENT
                 );
         mBuilder.setContentIntent(resultPendingIntent);
-        NotificationManager mNotificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-// mId allows you to update the notification later on.
-        mNotificationManager.notify(1, mBuilder.build());
+        Notification notification = mBuilder.build();
+        // default phone settings for notifications
+        notification.defaults |= Notification.DEFAULT_VIBRATE;
+        notification.defaults |= Notification.DEFAULT_SOUND;
+
+        // cancel notification after click
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+        // show scrolling text on status bar when notification arrives
+        notification.tickerText = message;
+
+
+        // mId allows you to update the notification later on.
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        mNotificationManager.notify(1, notification);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        session = new SessionManager(getApplicationContext());
+        session.checkLogin();
 
         mSocket.on("androidcam", new Emitter.Listener() {
             @Override
@@ -134,6 +130,66 @@ public class DashboardActivity extends ActionBarActivity {
         FlatToggleButton sw3 = (FlatToggleButton) findViewById(R.id.switch3);
         FlatToggleButton sw4 = (FlatToggleButton) findViewById(R.id.switch4);
         Button btnLogout = (Button) findViewById(R.id.btnLogout);
+
+        Button btnMode0 = (Button) findViewById(R.id.btnMode0);
+        Button btnMode1 = (Button) findViewById(R.id.btnMode1);
+        Button btnMode2 = (Button) findViewById(R.id.btnMode2);
+        Button btnMode3 = (Button) findViewById(R.id.btnMode3);
+        Button btnMode4 = (Button) findViewById(R.id.btnMode4);
+
+        SegmentedGroup segmented2 = (SegmentedGroup) findViewById(R.id.segmented2);
+        SegmentedGroup segmented3 = (SegmentedGroup) findViewById(R.id.segmented3);
+        segmented2.setTintColor(getResources().getColor(R.color.deep_primary));
+        segmented3.setTintColor(getResources().getColor(R.color.deep_primary));
+
+        segmented2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.button21:
+                        new ToggleTask().execute("http://modulair.muhammadmustadi.com/v1/subsystems/55113c458302d32802674d8c/toggle/10");
+                        return;
+                    case R.id.button22:
+                        new ToggleTask().execute("http://modulair.muhammadmustadi.com/v1/subsystems/55113c458302d32802674d8c/toggle/11");
+                        return;
+                    case R.id.button23:
+                        new ToggleTask().execute("http://modulair.muhammadmustadi.com/v1/subsystems/55113c458302d32802674d8c/toggle/12");
+                        return;
+                    case R.id.button24:
+                        new ToggleTask().execute("http://modulair.muhammadmustadi.com/v1/subsystems/55113c458302d32802674d8c/toggle/13");
+                        return;
+                    default:
+                        // Nothing to do
+                }
+            }
+        });
+
+
+        segmented3.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.button25:
+                        new ToggleTask().execute("http://modulair.muhammadmustadi.com/v1/subsystems/55113c458302d32802674d8c/toggle/14");
+                        return;
+                    case R.id.button26:
+                        new ToggleTask().execute("http://modulair.muhammadmustadi.com/v1/subsystems/55113c458302d32802674d8c/toggle/15");
+                        return;
+                    case R.id.button27:
+                        new ToggleTask().execute("http://modulair.muhammadmustadi.com/v1/subsystems/55113c458302d32802674d8c/toggle/16");
+                        return;
+                    case R.id.button28:
+                        new ToggleTask().execute("http://modulair.muhammadmustadi.com/v1/subsystems/55113c458302d32802674d8c/toggle/17");
+                        return;
+                    default:
+                        // Nothing to do
+                }
+            }
+        });
+
+
         TextView tvDash = (TextView) findViewById(R.id.textViewID);
         tvDash.setText("hello " + message);
         sw1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -160,6 +216,50 @@ public class DashboardActivity extends ActionBarActivity {
                 new ToggleTask().execute("http://modulair.muhammadmustadi.com/v1/subsystems/55113c458302d32802674d8c/toggle/4");
             }
         });
+
+        btnMode0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new ToggleTask().execute("http://modulair.muhammadmustadi.com/v1/subsystems/55113c458302d32802674d8c/toggle/5");
+
+            }
+
+        });
+        btnMode1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new ToggleTask().execute("http://modulair.muhammadmustadi.com/v1/subsystems/55113c458302d32802674d8c/toggle/6");
+
+            }
+
+        });
+        btnMode2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new ToggleTask().execute("http://modulair.muhammadmustadi.com/v1/subsystems/55113c458302d32802674d8c/toggle/7");
+
+            }
+
+        });
+        btnMode3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new ToggleTask().execute("http://modulair.muhammadmustadi.com/v1/subsystems/55113c458302d32802674d8c/toggle/8");
+
+            }
+
+        });
+        btnMode4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new ToggleTask().execute("http://modulair.muhammadmustadi.com/v1/subsystems/55113c458302d32802674d8c/toggle/9");
+
+            }
+
+        });
+
+
+
         /**
          * Logout button click event
          * */
