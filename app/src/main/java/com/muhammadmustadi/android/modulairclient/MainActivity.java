@@ -2,6 +2,7 @@ package com.muhammadmustadi.android.modulairclient;
 
 import android.app.Activity;
 import android.app.LoaderManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
@@ -9,14 +10,19 @@ import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.dd.processbutton.ProcessButton;
+import com.dd.processbutton.iml.ActionProcessButton;
 import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
@@ -37,6 +43,8 @@ public class MainActivity extends Activity implements LoaderManager.LoaderCallba
     private View mProgressView;
     private View mLoginFormView;
     private TextView textRes;
+    private ActionProcessButton btnGet;
+    private InputMethodManager inputManager;
 
 
     @Override
@@ -47,19 +55,36 @@ public class MainActivity extends Activity implements LoaderManager.LoaderCallba
         mEmailView = (AutoCompleteTextView) findViewById(R.id.textLogin);
         mPasswordView = (EditText) findViewById(R.id.textPass);
 
-        Button btnGet = (Button) findViewById(R.id.btnGet);
+        btnGet = (ActionProcessButton) findViewById(R.id.btnGet);
+        btnGet.setMode(ActionProcessButton.Mode.ENDLESS);
         textRes = (TextView) findViewById(R.id.textRes);
-
+        inputManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
         String sessionID;
         sessionManager = new SessionManager(getApplicationContext());
         btnGet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                btnGet.setProgress(1);
                 attemptLogin();
+            }
+        });
+        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    inputManager.toggleSoftInput(0, 0);
+                    btnGet.setProgress(1);
+                    attemptLogin();
+                    return true;
+                }
+                return false;
             }
         });
     }
     public void attemptLogin() {
+        mEmailView.setEnabled(false);
+        mPasswordView.setEnabled(false);
         if (mAuthTask != null) {
             return;
         }
@@ -92,7 +117,10 @@ public class MainActivity extends Activity implements LoaderManager.LoaderCallba
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
+            mEmailView.setEnabled(true);
+            mPasswordView.setEnabled(true);
             focusView.requestFocus();
+            btnGet.setProgress(-1);
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
@@ -134,16 +162,29 @@ public class MainActivity extends Activity implements LoaderManager.LoaderCallba
                 session = jsonObject.getJSONObject("session");
             } catch (JSONException e) {
                 e.printStackTrace();
+                btnGet.setProgress(-1);
+                mEmailView.setEnabled(true);
+                mPasswordView.setEnabled(true);
+                mPasswordView.setError("check your email/password.");
+                mPasswordView.requestFocus();
             }
             if (session!=null) {
+
+
                 try {
+
+                    btnGet.setProgress(100);
                     String sessionID = session.getString("_id");
                     Intent i = new Intent(MainActivity.this, DashboardActivity.class);
                     sessionManager.createLoginSession(sessionID);
                     i.putExtra("SESSIONID", sessionID);
                     startActivity(i);
+                    finish();
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    mEmailView.setEnabled(true);
+                    mPasswordView.setEnabled(true);
+                    btnGet.setProgress(-1);
                     tv.setText("Please try again.");
                 }
             }
